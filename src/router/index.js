@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import ViewNotes from '@/views/ViewNotes.vue'
-import ViewStats from '@/views/ViewStats.vue'
+import ViewNotes from '@/views/view-notes.vue'
+import ViewStats from '@/views/view-stats.vue'
 
 const routes = [
   {
