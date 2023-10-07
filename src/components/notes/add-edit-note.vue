@@ -11,6 +11,7 @@
           :placeholder="placeholder"
           maxlength="100"
           @input="$emit('update:modelValue', $event.target.value)"
+          @keyup.enter="$emit('keyupEnter')"
         />
       </div>
     </div>
@@ -44,7 +45,7 @@ const props = defineProps({
   }
 })
 
-const emits = defineEmits(['update:modelValue'])
+const emits = defineEmits(['update:modelValue', 'keyupEnter'])
 
 const textareaRef = ref(null)
 

@@ -6,7 +6,7 @@ export const useStoreNotes = defineStore('storeNotes', {
       {
         id: 'id1',
         content:
-          'hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1'
+          'hello 1 hello 1 hello 1 hello 1 hello 1'
       },
       {
         id: 'id2',

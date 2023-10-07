@@ -6,6 +6,7 @@
       label="Edit note"
       bg-color="link"
       placeholder="Edit note"
+      @keyupEnter="handleSaveClicked"
     >
       <template #buttons>
         <button class="button is-link is-light mr-2" @click="$router.back()">Cancel</button>
