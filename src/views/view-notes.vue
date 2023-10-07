@@ -1,73 +1,33 @@
 <template>
   <div class="notes">
-    <div class="card has-background-success-dark p-4 mb-5">
-      <div class="field">
-        <div class="control">
-          <textarea
-            v-model="newNote"
-            ref="newNoteRef"
-            class="textarea"
-            placeholder="Add new note"
-            @keyup.enter="addNote"
-          />
-        </div>
-      </div>
+    <add-edit-note v-model="newNote" ref="addEditNoteRef" placeholder="Add new note">
+      <template #buttons>
+        <button :disabled="!newNote" class="button is-link has-background-success" @click="addNote">
+          Add new note
+        </button>
+      </template>
+    </add-edit-note>
 
-      <div class="field is-grouped is-grouped-right">
-        <div class="control">
-          <button
-            class="button is-link has-background-success"
-            :disabled="!newNote.trim()"
-            @click="addNote"
-          >
-            Add new note
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <note
-      v-for="note in notes"
-      :key="note.id"
-      class="mb-4"
-      :note="note"
-      @deleteClicked="deleteNote"
-    />
+    <note v-for="note in storeNotes.notes" :key="note.id" class="mb-4" :note="note" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import Note from '@/components/notes/note.vue'
+import AddEditNote from '@/components/notes/add-edit-note.vue'
+import { useStoreNotes } from '@/stores/store-notes'
+
+const storeNotes = useStoreNotes()
 
 const newNote = ref('')
-const newNoteRef = ref(null)
-
-const notes = ref([
-  {
-    id: 'id1',
-    content:
-      'hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 hello 1 '
-  },
-  {
-    id: 'id2',
-    content: 'hello 2'
-  }
-])
+const addEditNoteRef = ref(null)
 
 const addNote = () => {
   if (!newNote.value.trim()) return
 
-  const currentDate = new Date().getTime()
-  const id = currentDate.toString()
-
-  const note = { id, content: newNote.value }
-  notes.value.unshift(note)
+  storeNotes.addNote(newNote.value)
   newNote.value = ''
-  newNoteRef.value.focus()
-}
-
-const deleteNote = (noteId) => {
-  notes.value = notes.value.filter((n) => n.id != noteId)
+  addEditNoteRef.value.focusTextarea()
 }
 </script>
