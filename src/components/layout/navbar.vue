@@ -50,13 +50,16 @@
 </template>
 
 <script setup>
+// Imports
 import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 
+// Refs
 const showMobileNav = ref(false)
-
 const navbarMenuRef = ref(null)
 const navbarBurgerRef = ref(null)
+
+// Mobile nav
 onClickOutside(navbarMenuRef, () => (showMobileNav.value = false), { ignore: [navbarBurgerRef] })
 </script>
 

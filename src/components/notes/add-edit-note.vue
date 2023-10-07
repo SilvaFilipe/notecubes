@@ -47,12 +47,9 @@ const props = defineProps({
 
 const emits = defineEmits(['update:modelValue', 'keyupEnter'])
 
+// Textarea
 const textareaRef = ref(null)
-
 const focusTextarea = () => textareaRef.value.focus()
 onMounted(() => focusTextarea())
-
-defineExpose({
-  focusTextarea
-})
+defineExpose({ focusTextarea })
 </script>

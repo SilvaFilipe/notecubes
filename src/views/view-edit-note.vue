@@ -34,7 +34,6 @@ const route = useRoute()
 const router = useRouter()
 
 const noteContent = ref('')
-
 noteContent.value = storeNotes.getNoteContent(route.params.id)
 
 const handleSaveClicked = () => {
